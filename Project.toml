@@ -1,0 +1,8 @@
+name = "JOLI4Flux"
+uuid = "c228d1c8-a1cf-11e9-3cb4-9bd0a4cd14fc"
+authors = ["Henryk Modzelewski <henryk_modzelewski@mac.com>"]
+version = "0.1.0"
+
+[deps]
+JOLI = "bb331ad6-a1cf-11e9-23da-9bcb53c69f6f"
+Tracker = "9f7883ad-71c0-57eb-9f7f-b5c9e6d3789c"
