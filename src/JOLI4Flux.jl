@@ -6,7 +6,9 @@ module JOLI4Flux
 
     *(x::joAbstractLinearOperator,y::TrackedVector) = Tracker.track(*, x, y)
 
+#    @grad a::joAbstractLinearOperator * b::AbstractVecOrMat =
+#        Tracker.data(a)*Tracker.data(b), Δ -> (Δ * transpose(b), transpose(a) * Δ)
     @grad a::joAbstractLinearOperator * b::AbstractVecOrMat =
-        Tracker.data(a)*Tracker.data(b), Δ -> (Δ * transpose(b), transpose(a) * Δ)
+        Tracker.data(a)*Tracker.data(b), Δ -> (0., transpose(a) * Δ)
 
 end
