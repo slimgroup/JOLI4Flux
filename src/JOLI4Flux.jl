@@ -1,14 +1,9 @@
 module JOLI4Flux
     using JOLI: joAbstractLinearOperator
-    using Tracker
+    using Zygote
     import Base.*
-    import Tracker.@grad
-
-    *(x::joAbstractLinearOperator,y::TrackedVector) = Tracker.track(*, x, y)
-
-#    @grad a::joAbstractLinearOperator * b::AbstractVecOrMat =
-#        Tracker.data(a)*Tracker.data(b), Δ -> (Δ * transpose(b), transpose(a) * Δ)
-    @grad a::joAbstractLinearOperator * b::AbstractVecOrMat =
-        Tracker.data(a)*Tracker.data(b), Δ -> (0., transpose(a) * Δ)
-
+    using Zygote: @adjoint
+    
+    @adjoint a::joAbstractLinearOperator * b::AbstractVecOrMat = 
+        *(a, b), Δ -> (nothing, transpose(a) * Δ)
 end
