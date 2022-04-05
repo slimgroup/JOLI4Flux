@@ -1,24 +1,21 @@
 module JOLI4Flux
 
     using JOLI: joAbstractLinearOperator
-    using Zygote
-    using FillArrays
+    using ChainRulesCore, FillArrays
     import Base.*
-    using Zygote: @adjoint
-
-    @adjoint a::joAbstractLinearOperator * b::AbstractVecOrMat =
-        *(a, b), Δ -> (nothing, transpose(a) * Δ)
-
-    function *(
-        A::joAbstractLinearOperator{ADDT,ARDT},
-        v::FillArrays.Fill{vDT,1}
-    ) where {ADDT,ARDT,vDT<:Number}
-
-        dummy = Vector(v)
-        res = A*dummy
-
+    
+    function ChainRulesCore.rrule(::typeof(*), A::joAbstractLinearOperator{ADDT,ARDT}, v) where {ADDT,ARDT}
+      Y = A*v
+      function time_pullback(dy)
+        DY = unthunk(dy)
+        return NoTangent(), NoTangent(), @thunk(A' * DY)
+      end
+      return Y, time_pullback
     end
 
+    function *(A::joAbstractLinearOperator{ADDT,ARDT}, v::FillArrays.Fill{vDT,1}) where {ADDT,ARDT,vDT<:Number}
+        A*Vector(v)
+    end
 
 end
 

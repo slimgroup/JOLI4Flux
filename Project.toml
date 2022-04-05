@@ -1,12 +1,22 @@
 name = "JOLI4Flux"
 uuid = "c228d1c8-a1cf-11e9-3cb4-9bd0a4cd14fc"
-authors = ["Henryk Modzelewski <henryk_modzelewski@mac.com>"]
-version = "0.1.2"
+authors = ["Henryk Modzelewski <henryk_modzelewski@mac.com>", "Mathias Louboutin <mlouboutin3@gatech.edu>"]
+version = "0.2.1"
 
 [deps]
+ChainRulesCore = "d360d2e6-b24c-11e9-a2a3-2a2ae2dbcce4"
 FillArrays = "1a297f60-69ca-5386-bcde-b61e274b549b"
 JOLI = "bb331ad6-a1cf-11e9-23da-9bcb53c69f6f"
-Zygote = "e88e6eb3-aa80-5325-afca-941959d7151f"
 
 [compat]
-julia = ">= 0.7"
+ChainRulesCore = "1"
+FillArrays = "0.13"
+JOLI = "0.7"
+julia = "1"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+Zygote = "e88e6eb3-aa80-5325-afca-941959d7151f"
+
+[targets]
+test = ["Test", "Zygote"]
