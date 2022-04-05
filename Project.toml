@@ -10,4 +10,6 @@ JOLI = "bb331ad6-a1cf-11e9-23da-9bcb53c69f6f"
 
 [compat]
 JOLI = "0.7"
+ChainRulesCore = "1"
+FillArrays = "0.13"
 julia = "1"
