@@ -2,6 +2,8 @@
 
 Flux extensions for JOLI.
 
+THIS PACKAGE IS DEPRECATED WITH CHAINRULES DIRECTLY INTEGRATED INTO JOLI.
+
 ## INSTALLATION
 
 You must have [JOLI](https://github.com/slimgroup/JOLI.jl) installed first.
